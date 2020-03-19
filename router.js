@@ -1,7 +1,7 @@
 import { toast } from "common/tools";
 
 const pages = {
-	home: "pages/home/home"
+	home: "pages/home/home",
 }
 
 const toNav = (url, query = {}, type = "navigateTo") => {

@@ -1,10 +1,10 @@
 import Vue from "vue"
 import Vuex from "vuex"
 
-import { getStorageSync } from "../common/tools";
-import { fetch } from "../services/request";
+import { getStorageSync } from "common/tools";
+import { fetch } from "services/request";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 const store = new Vuex.Store({
 	modules: {},
@@ -73,4 +73,4 @@ const store = new Vuex.Store({
 	}
 })
 
-export default store
+export default store;

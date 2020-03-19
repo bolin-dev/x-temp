@@ -19,4 +19,4 @@
 	}
 </script>
 
-<style></style>
+<style scoped lang="scss"></style>

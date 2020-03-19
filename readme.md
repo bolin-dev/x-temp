@@ -1,9 +1,6 @@
 # x-temp
 
-> uni-app 通用模板
-* [CSS](#css)
-* [VUE](#vue)
-* [JS](#js)
+> 通用模板
 
 ## 20200319更新
 * tool.js 新增 saveFile() 保存文件

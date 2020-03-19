@@ -7,6 +7,7 @@
 * tool.js 新增 shareWithSystem() 系统分享
 * request.js 更新兼容api通配符"#" 格式："login", "#login", "#login#", "#login##", "login#", "login##"。api前第一个通配符调用loading()、api后第一个调用toast()，第二个延迟1000ms调用uni.navigateBack()
 * components 更新 x-upload 组件 支持 "api" 参数，"change"、"upload"、"done"事件绑定
+* uni.scss 全局样式 $radius 变更为 4px
 
 ## 20200307更新
 * components 新增 x-holder 占位图组件 参数 size

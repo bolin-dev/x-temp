@@ -1,13 +1,10 @@
 <template>
-	<view 
-		class="x-thumb" 
-		:style="{
+	<view class="x-thumb" :style="{
 			boxShadow: shadow ? '0 2px 8px rgba(0, 0, 0, 0.15)' : 'none',
 			width: calcSize,
 			height: calcSize,
 			borderRadius: calcRadius
-		}"
-	>
+		}">
 		<image :src="src" mode="aspectFill" lazy-load></image>
 	</view>
 </template>
@@ -35,7 +32,7 @@
 				required: true
 			},
 			size: {
-				type: String,
+				type: [String, Number],
 				default: "mid"
 			},
 			shape: {
@@ -68,11 +65,11 @@
 				} else if (shape === 'square') {
 					const calcSize = this.calcSize;
 					if (calcSize >= 44) {
-						calcRadius = 15;
-					} else {
 						calcRadius = 8;
+					} else {
+						calcRadius = 4;
 					}
-					calcRadius = `${calcRadius}rpx`;
+					calcRadius = `${calcRadius}px`;
 				}
 				return calcRadius;
 			}

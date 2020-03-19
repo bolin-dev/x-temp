@@ -226,4 +226,4 @@ export const updateWgt = () => new Promise(() => {
 			uni.reLaunch({ url });
 		}
 	});
-})
+});

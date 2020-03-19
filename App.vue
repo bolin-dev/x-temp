@@ -76,6 +76,7 @@
 	}
 
 	button {
+		@extend %x-center;
 		border: none;
 		outline: none;
 		box-shadow: none;
@@ -83,9 +84,6 @@
 		font-size: $body-size;
 		height: 88rpx;
 		border-radius: 44rpx;
-		display: flex;
-		justify-content: center;
-		align-items: center;
 	}
 
 	button:after {

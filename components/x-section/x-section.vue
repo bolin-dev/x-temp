@@ -32,7 +32,7 @@
 			},
 			minHeight: {
 				type: Number,
-				default: 110
+				default: 88
 			}
 		},
 		computed: {

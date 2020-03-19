@@ -9,10 +9,7 @@
 		"app-plus": {
 			"bounce": "vertical",
 			"softinputNavBar": "none",
-			"scrollIndicator": "none",
-			"titleNView": {
-				"titleAlign": "center"
-			}
+			"scrollIndicator": "none"
 		}
 	},
 	"tabBar": {
@@ -20,7 +17,8 @@
 		"selectedColor": "#3A77FF",
 		"backgroundColor": "#FFFFFF",
 		"borderStyle": "white",
-		"list": [{
+		"list": [
+			{
 				"pagePath": "pages/home/home",
 				"text": "首页",
 				"iconPath": "static/tabbar/home.png",
@@ -46,7 +44,8 @@
 			}
 		]
 	},
-	"pages": [{
+	"pages": [
+		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationStyle": "custom"

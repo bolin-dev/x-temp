@@ -1,0 +1,15 @@
+{
+  "name": "x-temp",
+  "version": "1.0.0",
+  "description": "通用模板",
+  "main": "main.js",
+  "dependencies": {
+    "sha1": "^1.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,206 @@
+{
+    "name" : "x-temp",
+    "appid" : "__UNI__36CB89D",
+    "description" : "通用模板",
+    "versionName" : "1.0.0",
+    "versionCode" : "100",
+    "transformPx" : false,
+    /* 5+App特有相关 */
+    "app-plus" : {
+        "usingComponents" : true,
+        "nvueCompiler" : "uni-app",
+        "splashscreen" : {
+            "alwaysShowBeforeRender" : true,
+            "waiting" : false,
+            "autoclose" : true,
+            "delay" : 0
+        },
+        "safearea" : {
+            "background" : "#FFFFFF",
+            "bottom" : {
+                "offset" : "none"
+            },
+            "left" : {
+                "offset" : "none"
+            },
+            "right" : {
+                "offset" : "none"
+            }
+        },
+        /* 模块配置 */
+        "modules" : {},
+        /* 应用发布信息 */
+        "distribute" : {
+            /* android打包配置 */
+            "android" : {
+                "permissions" : [
+                    "<uses-feature android:name=\"android.hardware.camera\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+                    "<uses-permission android:name=\"android.permission.CAMERA\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+                    "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+                    "<uses-permission android:name=\"android.permission.INSTALL_PACKAGES\"/>",
+                    "<uses-permission android:name=\"android.permission.REQUEST_INSTALL_PACKAGES\"/>",
+                    "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
+                    "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+                    "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
+                ]
+            },
+            /* ios打包配置 */
+            "ios" : {
+                "idfa" : false
+            },
+            /* SDK配置 */
+            "sdkConfigs" : {},
+            "icons" : {
+                "android" : {
+                    "hdpi" : "static/logo.png",
+                    "xhdpi" : "static/logo.png",
+                    "xxhdpi" : "static/logo.png",
+                    "xxxhdpi" : "static/logo.png"
+                },
+                "ios" : {
+                    "appstore" : "static/logo.png",
+                    "ipad" : {
+                        "app" : "static/logo.png",
+                        "app@2x" : "static/logo.png",
+                        "notification" : "static/logo.png",
+                        "notification@2x" : "static/logo.png",
+                        "proapp@2x" : "static/logo.png",
+                        "settings" : "static/logo.png",
+                        "settings@2x" : "static/logo.png",
+                        "spotlight" : "static/logo.png",
+                        "spotlight@2x" : "static/logo.png"
+                    },
+                    "iphone" : {
+                        "app@2x" : "static/logo.png",
+                        "app@3x" : "static/logo.png",
+                        "notification@2x" : "static/logo.png",
+                        "notification@3x" : "static/logo.png",
+                        "settings@2x" : "static/logo.png",
+                        "settings@3x" : "static/logo.png",
+                        "spotlight@2x" : "static/logo.png",
+                        "spotlight@3x" : "static/logo.png"
+                    }
+                }
+            },
+            "splashscreen" : {
+                "android" : {
+                    "hdpi" : "static/splash/480X762.png",
+                    "xhdpi" : "static/splash/720X1242.png",
+                    "xxhdpi" : "static/splash/1080X1882.png"
+                },
+                "ios" : {
+                    "iphone" : {
+                        "portrait-896h@3x" : "static/splash/1242X2688.png",
+                        "landscape-896h@3x" : "",
+                        "portrait-896h@2x" : "static/splash/828X1792.png",
+                        "landscape-896h@2x" : "",
+                        "iphonex" : "static/splash/1125X2436.png",
+                        "iphonexl" : "",
+                        "retina55" : "static/splash/1242X2208.png",
+                        "retina55l" : "",
+                        "retina47" : "static/splash/750X1334.png",
+                        "retina47l" : "",
+                        "retina40" : "static/splash/640X1136.png",
+                        "retina40l" : "",
+                        "retina35" : "static/splash/640X960.png"
+                    },
+                    "ipad" : {
+                        "portrait-1366h@2x" : "",
+                        "landscape-1366h@2x" : "",
+                        "portrait-1194h@2" : "",
+                        "landscape-1194h@2x" : "",
+                        "portrait-1112h@2x" : "",
+                        "landscape-1112h@2x" : "",
+                        "portrait-retina7" : "",
+                        "landscape-retina7" : "",
+                        "portrait7" : "",
+                        "landscape7" : ""
+                    }
+                }
+            }
+        },
+        "compilerVersion" : 3,
+        "nvueLaunchMode" : "fast",
+        "uniStatistics" : {
+            "enable" : true
+        }
+    },
+    /* 快应用特有相关 */
+    "quickapp" : {},
+    /* 小程序特有相关 */
+    "mp-weixin" : {
+        "appid" : "",
+        "setting" : {
+            "urlCheck" : true,
+            "minified" : true,
+            "postcss" : true
+        },
+        "usingComponents" : true,
+        "uniStatistics" : {
+            "enable" : true
+        }
+    },
+    "mp-alipay" : {
+        "usingComponents" : true,
+        "uniStatistics" : {
+            "enable" : true
+        }
+    },
+    "mp-baidu" : {
+        "usingComponents" : true,
+        "uniStatistics" : {
+            "enable" : true
+        }
+    },
+    "mp-toutiao" : {
+        "usingComponents" : true,
+        "setting" : {
+            "postcss" : true,
+            "minified" : true
+        },
+        "uniStatistics" : {
+            "enable" : true
+        }
+    },
+    "mp-qq" : {
+        "setting" : {
+            "postcss" : true,
+            "minified" : true
+        },
+        "uniStatistics" : {
+            "enable" : true
+        }
+    },
+    "h5" : {
+        "optimization" : {
+            "treeShaking" : {
+                "enable" : true
+            }
+        },
+        "uniStatistics" : {
+            "enable" : true
+        },
+        "router" : {
+            "base" : "/h5/"
+        }
+    },
+    "uniStatistics" : {
+        "enable" : true
+    }
+}

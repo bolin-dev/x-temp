@@ -1,0 +1,95 @@
+// base colors
+$blue: rgb(0, 122, 255);
+$green: rgb(52, 199, 89);
+$indigo: rgb(88, 86, 214);
+$orange: rgb(255, 149, 0);
+$pink: rgb(255, 45, 85);
+$purple: rgb(175, 82, 222);
+$red: rgb(255, 59, 48);
+$teal: rgb(90, 200, 250);
+$yellow: rgb(255, 204, 0);
+
+// base gray
+$gray-1: rgb(142, 142, 147);
+$gray-2: rgb(174, 174, 178);
+$gray-3: rgb(199, 199, 204);
+$gray-4: rgb(209, 209, 214);
+$gray-5: rgb(229, 229, 234);
+$gray-6: rgb(242, 242, 247);
+
+// base font
+$number-size: 40rpx;
+$number-color: #222222;
+$l-title-size: 36rpx;
+$l-title-color: #333333;
+$title-size: 32rpx;
+$title-color: #333333;
+$body-size: 28rpx;
+$body-color: #333333;
+$sub-size: 24rpx;
+$sub-color: #666666;
+$info-size: 20rpx;
+$info-color: #999999;
+
+// base style
+$bgc: #f8f8f8;
+$hover-bgc: $gray-6;
+$shadow: 0 2px 8px rgba(0, 0, 0, .15);
+$border: 1rpx solid $gray-5;
+$line-color: $gray-5;
+$navbar-hei: 44px;
+$tabbar-hei: 50px;
+$radius: 15rpx;
+$main-color: #33c7d4;
+$second-color: #07848f;
+$linear: linear-gradient(to right, $second-color, $main-color);
+
+// @include x-ellipsis(lines)
+@mixin x-ellipsis($lines: 2) {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-break: break-all;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: $lines;
+}
+
+%x-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+%x-num {
+	font-size: $number-size;
+	color: $number-color;
+}
+
+%x-l-title {
+	font-size: $l-title-size;
+	color: $l-title-color;
+}
+
+%x-title {
+	font-size: $title-size;
+	color: $title-color;
+}
+
+%x-body {
+	font-size: $body-size;
+	color: $body-color;
+}
+
+%x-sub {
+	font-size: $sub-size;
+	color: $sub-color;
+}
+
+%x-info {
+	font-size: $info-size;
+	color: $info-color;
+}
+
+%x-hover {
+	background-color: rgba($color: $hover-bgc, $alpha: 0.75);
+}

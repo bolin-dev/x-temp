@@ -9,11 +9,11 @@
 		methods:{
 			async fetch() {
 				await this.$fetch("fetch");
-				// await this.$fetch("/api");
-				// await this.$fetch("/fetch/");
-				// await this.$fetch("/api//");
-				// await this.$fetch("api/");
-				// await this.$fetch("api//");
+				// await this.$fetch("#api");
+				// await this.$fetch("#fetch#");
+				// await this.$fetch("#api##");
+				// await this.$fetch("api#");
+				// await this.$fetch("api##");
 			}
 		}
 	}

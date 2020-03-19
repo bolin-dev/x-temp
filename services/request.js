@@ -12,8 +12,8 @@ const interceptor = (url) => {
 	let options = false;
 	let params = [];
 
-	if (url.indexOf("/") !== -1) {
-		params = url.split("/");
+	if (url.indexOf("#") !== -1) {
+		params = url.split("#");
 		url = params.filter(item => item)[0];
 	}
 	if (url in api) url = `${config.api_url}${api[url]}`;

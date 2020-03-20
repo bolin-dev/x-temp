@@ -1,7 +1,6 @@
 <template>
 	<view class="home">
 		<button type="primary" @click="fetch">fetch</button>
-		<input type="text" value="" placeholder="" />
 	</view>
 </template>
 
@@ -21,5 +20,7 @@
 </script>
 
 <style scoped lang="scss">
-	.home {}
+	.home {
+		padding: 30rpx;
+	}
 </style>

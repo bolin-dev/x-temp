@@ -7,10 +7,9 @@
 		onLoad() {
 			if (process.env.NODE_ENV === 'development') {
 				// uni.reLaunch({ url: '/pages/login/login' });
-				uni.switchTab({ url: '/pages/home/home' });
+				uni.switchTab({ url: "/pages/home/home" });
 			} else {
-				this.tools.loading();
-				this.$store.dispatch('checkToken')
+				this.$store.dispatch("checkToken");
 			}
 		}
 	};

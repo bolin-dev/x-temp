@@ -77,20 +77,40 @@ const complete = () => {
 }
 
 // POST请求
-export const fetch = (url, data = {}, payload = {}) => new Promise((resolve) => {
-	const options = interceptor(url);
-	if (options) {
-		uni.request({
-			data,
-			method: "POST",
-			success: ({ statusCode, data }) => resolve(success(statusCode, data, options._params)),
-			fail: ({ errMsg }) => resolve(fail(errMsg)),
-			complete,
-			...options,
-			...payload
-		});
-	}
-});
+
+export function fetch(url, data = {}, payload = {}) {
+	return new Promise((resolve) => {
+		// console.log(this.$mp.page.route);
+		const options = interceptor(url);
+		if (options) {
+			uni.request({
+				data,
+				method: "POST",
+				success: ({ statusCode, data }) => resolve(success(statusCode, data, options._params)),
+				fail: ({ errMsg }) => resolve(fail(errMsg)),
+				complete,
+				...options,
+				...payload
+			});
+		}
+	});
+}
+
+// export const fetch = (url, data = {}, payload = {}) => new Promise((resolve) => {
+// 	console.log(this);
+// 	const options = interceptor(url);
+// 	if (options) {
+// 		uni.request({
+// 			data,
+// 			method: "POST",
+// 			success: ({ statusCode, data }) => resolve(success(statusCode, data, options._params)),
+// 			fail: ({ errMsg }) => resolve(fail(errMsg)),
+// 			complete,
+// 			...options,
+// 			...payload
+// 		});
+// 	}
+// });
 
 // 表单提交
 export const submit = (url, formData = null, name = "files") => new Promise((resolve) => {

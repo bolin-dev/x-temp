@@ -57,8 +57,9 @@ const success = (statusCode, data, params = []) => {
 			toast(res);
 			if (len > 2) {
 				setTimeout(() => {
+					console.log(1);
 					uni.navigateBack();
-				}, 1000);
+				}, 1500);
 			}
 		}
 	}

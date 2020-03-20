@@ -73,9 +73,7 @@ export const saveFile = (tempFilePath) => new Promise((resolve) => {
 export const toast = (title = "", icon = "none", payload = {}) => {
 	if(typeof title !== "string") {
 		if("err" in title && "msg" in title){
-			if(!title.err){
-				icon = "success";
-			}
+			icon = title.err? "fail": "success";
 			title = title.msg;
 		} else {
 			title = "";
@@ -84,7 +82,13 @@ export const toast = (title = "", icon = "none", payload = {}) => {
 	title = title.trim();
 	if(title) {
 		hideLoading();
-		uni.showToast({ title, icon, ...payload })
+		const isNone = !["fail", "success"].includes(icon);
+		uni.showToast({
+			title, 
+			icon: isNone? "none": "",
+			image: isNone? "": `/static/toast/${icon}.png`,
+			...payload 
+		});
 	}
 }
 

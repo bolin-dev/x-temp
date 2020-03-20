@@ -1,5 +1,5 @@
 const api = {
-	login: "/api/access/login",
+	fetch: "/api/access/login",
 }
 
 export default api;

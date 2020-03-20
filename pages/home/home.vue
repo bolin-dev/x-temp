@@ -5,18 +5,25 @@
 </template>
 
 <script>
-	export default{
-		methods:{
+	export default {
+		methods: {
 			async fetch() {
-				await this.$fetch("fetch");
-				// await this.$fetch("#api");
+				this.$tools.toast({ err: true, msg: "321"});
+				// this.$tools.toast("123", "fail");
+				// await this.$fetch("fetch");
+				// await this.$fetch("#fetch");
 				// await this.$fetch("#fetch#");
-				// await this.$fetch("#api##");
-				// await this.$fetch("api#");
-				// await this.$fetch("api##");
+				// await this.$fetch("#fetch##", {
+				// 	account: "18319569012",
+				// 	password: this.$tools.pwd2sh1("123456")
+				// });
+				// await this.$fetch("fetch#");
+				// await this.$fetch("fetch##");
 			}
 		}
 	}
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+	.home {}
+</style>

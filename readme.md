@@ -2,6 +2,10 @@
 
 > 通用模板
 
+## 20200323更新
+* request.js 更新 兼容支持文档结构同级查找
+* router.js 更新 兼容支持文档结构下级查找
+
 ## 20200319更新
 * tool.js 新增 saveFile() 保存文件
 * tool.js 新增 shareWithSystem() 系统分享

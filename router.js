@@ -4,11 +4,23 @@ const pages = {
 	home: "pages/home/home",
 }
 
-const toNav = (url, query = {}, type = "navigateTo") => {
-	if (url.indexOf("/") === -1) url = url in pages? pages[url]: "";
-	if (!url) return toast("页面错误或不存在");
+function toNav(url, query = {}, type = "navigateTo", payload = {}) {
+	if (url.indexOf("/") === -1) {
+		if (url in pages) {
+			url = pages[url];
+		} else {
+			let route = this.$mp.page.route.split("/");
+			if (route.length === 3) route[2] = url;
+			route[3] = url;
+			url = route.join("/");
+		}
+	}
 	const queryStr = encodeURIComponent(JSON.stringify(query));
-	uni[type]({ url: `/${url}?query=${queryStr}` });
+	uni[type]({
+		url: `/${url}?query=${queryStr}`,
+		fail: () => toast("功能开发中..."),
+		...payload
+	});
 }
 
 export default toNav;

@@ -93,7 +93,6 @@ const complete = () => {
 	hideLoading();
 }
 
-// POST请求
 export function fetch(url, data = {}, payload = {}) {
 	const options = interceptor(url, this.$mp.page.route);
 	if (options) {
@@ -111,7 +110,6 @@ export function fetch(url, data = {}, payload = {}) {
 	}
 }
 
-// 表单提交
 export function submit(url, formData = null, name = "files") {
 	if (!name) name = "files";
 	if (formData && name in formData && Object.keys(formData[name]).length > 0) {
@@ -142,7 +140,6 @@ export function submit(url, formData = null, name = "files") {
 	}
 }
 
-// 图片上传
 export function upload(filePath, url = config.upload_url, name = "file") {
 	if (!url) url = config.upload_url;
 	if (!name) name = "file";
@@ -162,7 +159,6 @@ export function upload(filePath, url = config.upload_url, name = "file") {
 	}
 }
 
-// 下载文件
 export function download(url) {
 	const options = interceptor(url, this.$mp.page.route);
 	if (options) {

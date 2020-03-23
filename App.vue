@@ -13,7 +13,7 @@
 </script>
 
 <style lang="scss">
-	@import 'common/icon.css';
+	@import "common/icon.css";
 
 	::-webkit-scrollbar {
 		display: none;

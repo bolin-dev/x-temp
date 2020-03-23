@@ -8,30 +8,48 @@ export const isUrl = (url) => {
 	return /^(https?:\/\/(([a-zA-Z0-9]+-?)+[a-zA-Z0-9]+\.)+[a-zA-Z]+)(:\d+)?(\/.*)?(\?.*)?(#.*)?$/.test(url);
 }
 
-const interceptor = (url) => {
+const interceptor = (url, route = "") => {
 	let options = false;
-	let params = [];
+	let _params = [];
 
 	if (url.indexOf("#") !== -1) {
-		params = url.split("#");
-		url = params.filter(item => item)[0];
+		_params = url.split("#");
+		url = _params.filter(item => item)[0];
 	}
-	if (url in api) url = `${config.api_url}${api[url]}`;
+
+	if (url in api && typeof api[url] === "string") {
+		url = `${config.api_url}${api[url]}`;
+	} else if (route) {
+		route = route.split("/").splice(1);
+		if (route.length > 1) {
+			let uri = "";
+			for (let i = 0; i < route.length; i++) {
+				if (typeof uri !== "undefined") {
+					if (i !== route.length - 1) {
+						uri = uri ? uri[route[i]] : api[route[i]];
+					} else {
+						uri = uri[url];
+					}
+				}
+			}
+			if (typeof uri === "string") url = `${config.api_url}${uri}`;
+		}
+	}
+
 	if (isUrl(url)) {
-		if (params.length && params[0] === "") {
+		if (_params.length && _params[0] === "") {
 			loading();
-			params.splice(0, 1);
+			_params.splice(0, 1);
 		}
 		options = {
 			url,
-			header: {
-				Authorization: `bearer ${getStorageSync("token")}`
-			},
-			_params: params
+			header: { Authorization: `bearer ${getStorageSync("token")}` },
+			_params
 		};
 	} else {
 		if (isDev) toast("接口错误或未定义！");
 	}
+	
 	return options;
 }
 
@@ -54,10 +72,9 @@ const success = (statusCode, data, params = []) => {
 	} else {
 		const len = params.length;
 		if (len > 1) {
-			toast(res);
+			toast(res, "", { mask: true });
 			if (len > 2) {
 				setTimeout(() => {
-					console.log(1);
 					uni.navigateBack();
 				}, 1500);
 			}
@@ -77,12 +94,10 @@ const complete = () => {
 }
 
 // POST请求
-
 export function fetch(url, data = {}, payload = {}) {
-	return new Promise((resolve) => {
-		// console.log(this.$mp.page.route);
-		const options = interceptor(url);
-		if (options) {
+	const options = interceptor(url, this.$mp.page.route);
+	if (options) {
+		return new Promise((resolve) => {
 			uni.request({
 				data,
 				method: "POST",
@@ -92,31 +107,15 @@ export function fetch(url, data = {}, payload = {}) {
 				...options,
 				...payload
 			});
-		}
-	});
+		});
+	}
 }
 
-// export const fetch = (url, data = {}, payload = {}) => new Promise((resolve) => {
-// 	console.log(this);
-// 	const options = interceptor(url);
-// 	if (options) {
-// 		uni.request({
-// 			data,
-// 			method: "POST",
-// 			success: ({ statusCode, data }) => resolve(success(statusCode, data, options._params)),
-// 			fail: ({ errMsg }) => resolve(fail(errMsg)),
-// 			complete,
-// 			...options,
-// 			...payload
-// 		});
-// 	}
-// });
-
 // 表单提交
-export const submit = (url, formData = null, name = "files") => new Promise((resolve) => {
+export function submit(url, formData = null, name = "files") {
 	if (!name) name = "files";
 	if (formData && name in formData && Object.keys(formData[name]).length > 0) {
-		const options = interceptor(url);
+		const options = interceptor(url, this.$mp.page.route);
 		if (options) {
 			let files = [];
 			const formDataFiles = formData[name];
@@ -124,50 +123,56 @@ export const submit = (url, formData = null, name = "files") => new Promise((res
 				files.push({ name: key, uri: formDataFiles[key] });
 			}
 			delete formData[name];
+			return new Promise((resolve) => {
+				uni.uploadFile({
+					fileType: "image",
+					filePath: "",
+					name: "",
+					files,
+					formData,
+					success: ({ statusCode, data }) => resolve(success(statusCode, data, options._params)),
+					fail: ({ errMsg }) => resolve(fail(errMsg)),
+					complete,
+					...options
+				});
+			});
+		}
+	} else {
+		return(fetch(url, formData));
+	}
+}
+
+// 图片上传
+export function upload(filePath, url = config.upload_url, name = "file") {
+	if (!url) url = config.upload_url;
+	if (!name) name = "file";
+	const options = interceptor(url, this.$mp.page.route);
+	if (options) {
+		return new Promise((resolve) => {
 			uni.uploadFile({
 				fileType: "image",
-				filePath: "",
-				name: "",
-				files,
-				formData,
+				filePath,
+				name,
 				success: ({ statusCode, data }) => resolve(success(statusCode, data, options._params)),
 				fail: ({ errMsg }) => resolve(fail(errMsg)),
 				complete,
 				...options
 			});
-		}
-	} else {
-		resolve(fetch(url, formData));
-	}
-});
-
-// 图片上传
-export const upload = (filePath, url = config.upload_url, name = "file") => new Promise((resolve) => {
-	if (!url) url = config.upload_url;
-	if (!name) name = "file";
-	const options = interceptor(url);
-	if (options) {
-		uni.uploadFile({
-			fileType: "image",
-			filePath,
-			name,
-			success: ({ statusCode, data }) => resolve(success(statusCode, data, options._params)),
-			fail: ({ errMsg }) => resolve(fail(errMsg)),
-			complete,
-			...options
 		});
 	}
-});
+}
 
 // 下载文件
-export const download = (url) => new Promise((resolve) => {
-	const options = interceptor(url);
+export function download(url) {
+	const options = interceptor(url, this.$mp.page.route);
 	if (options) {
-		uni.downloadFile({
-			success: ({ statusCode, tempFilePath }) => resolve(success(statusCode, tempFilePath, options._params)),
-			fail: ({ errMsg }) => resolve(fail(errMsg)),
-			complete,
-			...options
+		return new Promise((resolve) => {
+			uni.downloadFile({
+				success: ({ statusCode, tempFilePath }) => resolve(success(statusCode, tempFilePath, options._params)),
+				fail: ({ errMsg }) => resolve(fail(errMsg)),
+				complete,
+				...options
+			});
 		});
 	}
-});
+}

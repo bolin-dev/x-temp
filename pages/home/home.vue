@@ -8,12 +8,8 @@
 	export default {
 		methods: {
 			async fetch() {
-				await this.$fetch("fetch");
-				// await this.$fetch("#fetch");
-				// await this.$fetch("#fetch#");
-				// await this.$fetch("#fetch##");
-				// await this.$fetch("fetch#");
-				// await this.$fetch("fetch##");
+				const res = await this.$fetch("index");
+				console.log(res);
 			}
 		}
 	}

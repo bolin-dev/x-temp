@@ -2,6 +2,9 @@
 
 > 通用模板
 
+## 20200325更新
+* components 新增 x-card 组件 参数 color, radius, pad
+
 ## 20200323更新
 * request.js 更新 兼容支持文档结构同级查找
 * router.js 更新 兼容支持文档结构下级查找

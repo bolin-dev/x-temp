@@ -1,5 +1,7 @@
 <template>
-	<view class="home"><button type="primary" @click="fetch">fetch</button></view>
+	<view class="home">
+		<button type="primary" @click="fetch">fetch</button>
+	</view>
 </template>
 
 <script>

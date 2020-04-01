@@ -6,6 +6,9 @@ import { fetch } from "services/request";
 
 Vue.use(Vuex);
 
+const loginUrl = "/pages/login/login";
+const homeUrl = "/pages/home/home";
+
 const store = new Vuex.Store({
 	modules: {},
 	state: {
@@ -23,48 +26,39 @@ const store = new Vuex.Store({
 	},
 	actions: {
 		async checkToken({ commit }) {
-			let url = "/pages/login/login";
+			let url = loginUrl;
 			let token = getStorageSync("token");
 			if (token && typeof token === "string") {
-				const res = await fetch("checkToken");
+				const res = await fetch("#checkToken");
 				token = "";
 				if (res && !res.err) {
 					token = res.data.token;
-					url = "/pages/home/home";
+					url = homeUrl;
 					commit("upAuth", res);
 				}
 			}
 			uni.setStorageSync("token", token);
-			uni.hideLoading();
 			uni.reLaunch({ url });
 		},
 		async login({ commit }, payload) {
-			uni.showLoading({ title: "登录中...", mask: true });
-			const res = await fetch("login", payload);
-			uni.hideLoading();
-			if (res && "err" in res) {
-				const { err, msg, data } = res;
-				uni.showToast({ icon: err ? "none" : "success", title: msg });
-				if (!err) {
-					uni.setStorage({ key: "account", data: payload.account });
-					uni.setStorageSync("token", data.token);
-					uni.reLaunch({ url: "/pages/home/home" });
-					commit("upAuth", res);
-				}
+			const res = await fetch("#login#", payload);
+			if (res && !res.err) {
+				uni.setStorage({ key: "account", data: payload.account });
+				uni.setStorageSync("token", data.token);
+				uni.reLaunch({ url: homeUrl });
+				commit("upAuth", res);
 			}
 		},
 		logout({ commit }) {
 			uni.showModal({
 				title: "退出登录",
-				content: "是否确认退出登录",
+				content: "是否确认退出登录？",
 				confirmText: "退出",
 				success: async ({ confirm }) => {
 					if (confirm) {
-						uni.showLoading({ mask: true });
-						await fetch("logout");
+						await fetch("#logout");
 						uni.removeStorageSync("token");
-						uni.hideLoading();
-						uni.reLaunch({ url: "/pages/login/login" });
+						uni.reLaunch({ url: loginUrl });
 						commit("upAuth", { err: true });
 					}
 				}

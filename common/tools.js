@@ -155,9 +155,7 @@ export const saveImageToPhotosAlbum = (filePath) => new Promise(async (resolve) 
 });
 
 // 调用第三方应用
-export const openURL = url => new Promise((resolve) => {
-	plus.runtime.openURL(url, () => resolve({ err: true, msg: "打开失败，请确保应用已安装！", data: "" }));
-});
+export const openURL = url => new Promise((resolve) => plus.runtime.openURL(url, () => resolve({ err: true, msg: "打开失败，请确保应用已安装！", data: "" })));
 
 // 更新APPwgt文件
 export const updateWgt = () => {

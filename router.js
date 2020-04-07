@@ -18,7 +18,7 @@ function toNav(url, query = {}, type = "navigateTo", payload = {}) {
 	const queryStr = encodeURIComponent(JSON.stringify(query));
 	uni[type]({
 		url: `/${url}?query=${queryStr}`,
-		fail: () => toast("功能开发中..."),
+		fail: () => toast("开发中..."),
 		...payload
 	});
 }

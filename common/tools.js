@@ -79,9 +79,7 @@ let delay = null;
 let timer = null;
 export const loading = (title = "", mask = true) => {
 	hideLoading();
-	delay = setTimeout(() => {
-		uni.showLoading({ title, mask, success: startLoading });
-	}, 300);
+	delay = setTimeout(() => uni.showLoading({ title, mask, success: startLoading }), 300);
 }
 const startLoading = () => {
 	timer = setTimeout(hideLoading, 30000);
@@ -165,18 +163,18 @@ export const openURL = url => new Promise((resolve) => {
 export const updateWgt = () => {
 	const url = "/pages/index/index";
 	const wgt_url = config.wgt_url;
-	if (wgt_url) {
+	if (isUrl(wgt_url)) {
 		return new Promise(() => {
-			plus.runtime.getProperty(plus.runtime.appid, async(widgetInfo) => {
+			plus.runtime.getProperty(plus.runtime.appid, async (widgetInfo) => {
 				const fetchRes = await fetch(`#${wgt_url}`, widgetInfo);
-				if(!fetchRes.err){
+				if (!fetchRes.err) {
 					const { update, wgtUrl } = fetchRes.data;
-					if(update&&wgtUrl){
+					if (update && wgtUrl) {
 						loading("正在更新，请稍候~");
 						const downloadRes = await download(wgtUrl);
-						if(!downloadRes.err){
+						if (!downloadRes.err) {
 							const saveRes = await saveFile(downloadRes.data);
-							if(!saveRes.err){
+							if (!saveRes.err) {
 								plus.runtime.install(
 									saveRes.data, 
 									{ force: false },

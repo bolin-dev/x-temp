@@ -162,32 +162,32 @@ export const openURL = url => new Promise((resolve) => {
 });
 
 // 更新APPwgt文件
-export const updateWgt = () => new Promise(() => {
+export const updateWgt = () => {
 	const url = "/pages/index/index";
-	plus.runtime.getProperty(plus.runtime.appid, async (widgetInfo) => {
-		const { err, data } = await fetch(config.wgt_url, widgetInfo);
-		if (!err) {
-			const { update, wgtUrl } = data;
-			if (update && wgtUrl) {
-				loading("正在更新，请稍候~");
-				plus.downloader.createDownload(
-					wgtUrl, 
-					{ filename: "_doc/update/" + widgetInfo.name + "/" + new Date().getTime() + "/" },
-					(res) => {
-						hideLoading();
-						plus.runtime.install(
-							res.filename, 
-							{ force: false },
-							() => plus.runtime.restart(),
-							() => uni.reLaunch({ url })
-						);
+	const wgt_url = config.wgt_url;
+	if (wgt_url) {
+		return new Promise(() => {
+			plus.runtime.getProperty(plus.runtime.appid, async(widgetInfo) => {
+				const fetchRes = await fetch(`#${wgt_url}`, widgetInfo);
+				if(!fetchRes.err){
+					const { update, wgtUrl } = fetchRes.data;
+					if(update&&wgtUrl){
+						loading("正在更新，请稍候~");
+						const downloadRes = await download(wgtUrl);
+						if(!downloadRes.err){
+							const saveRes = await saveFile(downloadRes.data);
+							if(!saveRes.err){
+								plus.runtime.install(
+									saveRes.data, 
+									{ force: false },
+									() => plus.runtime.restart(),
+									() => uni.reLaunch({ url })
+								);
+							}
+						}
 					}
-				).start();
-			} else {
-				uni.reLaunch({ url });
-			}
-		} else {
-			uni.reLaunch({ url });
-		}
-	});
-});
+				}
+			});
+		});
+	}
+}

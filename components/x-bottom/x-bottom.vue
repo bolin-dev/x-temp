@@ -27,6 +27,7 @@
 <style scoped lang="scss">
 	.x-bottom {
 		position: fixed;
+		z-index: 999;
 		left: 0;
 		right: 0;
 	}

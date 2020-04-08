@@ -9,7 +9,6 @@
 		methods: {
 			async fetch() {
 				const res = await this.$fetch('index');
-				console.log(res);
 			}
 		}
 	};

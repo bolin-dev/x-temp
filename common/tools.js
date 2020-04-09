@@ -159,9 +159,9 @@ export const openURL = url => new Promise((resolve) => plus.runtime.openURL(url,
 
 // 更新APPwgt文件
 export const updateWgt = () => {
-	const url = "/pages/index/index";
 	const wgt_url = config.wgt_url;
 	if (isUrl(wgt_url)) {
+		const url = "/pages/index/index";
 		return new Promise(() => {
 			plus.runtime.getProperty(plus.runtime.appid, async (widgetInfo) => {
 				const fetchRes = await fetch(`#${wgt_url}`, widgetInfo);

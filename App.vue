@@ -67,7 +67,7 @@
 	textarea {
 		width: 100%;
 		min-height: auto;
-		@extend %x-body;
+		font-size: $body-size;
 	}
 
 	.input-placeholder,

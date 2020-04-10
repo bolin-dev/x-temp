@@ -1,7 +1,7 @@
 <template>
 	<view 
 		class="x-row x-cell" 
-		:hover-class="{ 'x-cell-hover': isBind }" 
+		:hover-class="isBind? 'x-cell-hover': ''"
 		@click="click"
 	>
 		<view class="thumb" v-if="thumb && thumb.length > 0">

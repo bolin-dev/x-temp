@@ -5,7 +5,7 @@
 			height: calcSize,
 			borderRadius: calcRadius
 		}">
-		<image :src="src" mode="aspectFill" lazy-load></image>
+		<image :src="`${src || `https://img.la/${size}x${size}`}`" mode="aspectFill" lazy-load></image>
 	</view>
 </template>
 
@@ -29,7 +29,7 @@
 		props: {
 			src: {
 				type: String,
-				required: true
+				default: ""
 			},
 			size: {
 				type: [String, Number],
@@ -79,6 +79,7 @@
 
 <style scoped lang="scss">
 	.x-thumb {
+		z-index: 1;
 		overflow: hidden;
 
 		image {

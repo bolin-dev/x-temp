@@ -28,15 +28,16 @@ const store = new Vuex.Store({
 		async checkToken({ commit }) {
 			let url = loginUrl;
 			let token = getStorageSync("token");
-			if (token && typeof token === "string") {
-				const res = await fetch("#checkToken");
-				token = "";
-				if (res && !res.err) {
-					token = res.data.token;
-					url = homeUrl;
-					commit("upAuth", res);
-				}
-			}
+			const res = await fetch("#checkToken");
+			// if (token && typeof token === "string") {
+			// 	const res = await fetch("#checkToken");
+			// 	token = "";
+			// 	if (res && !res.err) {
+			// 		token = res.data.token;
+			// 		url = homeUrl;
+			// 		commit("upAuth", res);
+			// 	}
+			// }
 			uni.setStorageSync("token", token);
 			uni.reLaunch({ url });
 		},

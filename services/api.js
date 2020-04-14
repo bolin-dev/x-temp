@@ -1,4 +1,5 @@
 const api = {
+	checkToken:"/api/access/login",
 	fetch: "/api/access/login",
 	home: {
 		home: "/api/access/index",

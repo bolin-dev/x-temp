@@ -47,9 +47,9 @@ const interceptor = (url, route = "") => {
 			_params
 		};
 	} else {
-		if (isDev) toast("接口错误或未定义！");
+		if (isDev) toast("接口错误或未定义！", "fail");
 	}
-	
+
 	return options;
 }
 
@@ -94,7 +94,13 @@ const complete = () => {
 }
 
 export function fetch(url, data = {}, payload = {}) {
-	const options = interceptor(url, this.$mp.page.route);
+	let route = "";
+	try {
+		route = this.$mp.page.route;
+	} catch (e) {
+		route = "";
+	}
+	const options = interceptor(url, route);
 	if (options) {
 		return new Promise((resolve) => {
 			uni.request({
@@ -113,7 +119,13 @@ export function fetch(url, data = {}, payload = {}) {
 export function submit(url, formData = null, name = "files") {
 	if (!name) name = "files";
 	if (formData && name in formData && Object.keys(formData[name]).length > 0) {
-		const options = interceptor(url, this.$mp.page.route);
+		let route = "";
+		try {
+			route = this.$mp.page.route;
+		} catch (e) {
+			route = "";
+		}
+		const options = interceptor(url, route);
 		if (options) {
 			let files = [];
 			const formDataFiles = formData[name];
@@ -136,14 +148,20 @@ export function submit(url, formData = null, name = "files") {
 			});
 		}
 	} else {
-		return(fetch(url, formData));
+		return (fetch(url, formData));
 	}
 }
 
 export function upload(filePath, url = config.upload_url, name = "file") {
 	if (!url) url = config.upload_url;
 	if (!name) name = "file";
-	const options = interceptor(url, this.$mp.page.route);
+	let route = "";
+	try {
+		route = this.$mp.page.route;
+	} catch (e) {
+		route = "";
+	}
+	const options = interceptor(url, route);
 	if (options) {
 		return new Promise((resolve) => {
 			uni.uploadFile({
@@ -160,7 +178,13 @@ export function upload(filePath, url = config.upload_url, name = "file") {
 }
 
 export function download(url) {
-	const options = interceptor(url, this.$mp.page.route);
+	let route = "";
+	try {
+		route = this.$mp.page.route;
+	} catch (e) {
+		route = "";
+	}
+	const options = interceptor(url, route);
 	if (options) {
 		return new Promise((resolve) => {
 			uni.downloadFile({

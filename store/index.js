@@ -29,15 +29,15 @@ const store = new Vuex.Store({
 			let url = loginUrl;
 			let token = getStorageSync("token");
 			const res = await fetch("#checkToken");
-			// if (token && typeof token === "string") {
-			// 	const res = await fetch("#checkToken");
-			// 	token = "";
-			// 	if (res && !res.err) {
-			// 		token = res.data.token;
-			// 		url = homeUrl;
-			// 		commit("upAuth", res);
-			// 	}
-			// }
+			if (token && typeof token === "string") {
+				const res = await fetch("#checkToken");
+				token = "";
+				if (res && !res.err) {
+					token = res.data.token;
+					url = homeUrl;
+					commit("upAuth", res);
+				}
+			}
 			uni.setStorageSync("token", token);
 			uni.reLaunch({ url });
 		},
@@ -45,7 +45,7 @@ const store = new Vuex.Store({
 			const res = await fetch("#login#", payload);
 			if (res && !res.err) {
 				uni.setStorage({ key: "account", data: payload.account });
-				uni.setStorageSync("token", data.token);
+				uni.setStorageSync("token", res.data.token);
 				uni.reLaunch({ url: homeUrl });
 				commit("upAuth", res);
 			}

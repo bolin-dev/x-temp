@@ -11,11 +11,20 @@ export const richTextReplace = (text = "") => {
 	return text;
 }
 
-// 密码sha1加密
-export const pwd2sh1 = (val = "") => {
+// sha1加密
+export const pwd2sh1 = (val = "", params = "password") => {
 	if (val) {
-		val = val.trim();
-		if (val) val = sha1(val);
+		if (typeof val === "string") {
+			val = val.trim();
+			if (val) val = sha1(val);
+		} else {
+			if (typeof params === "string") params = [params];
+			if (params.length) {
+				for (let param of params) {
+					if (param in val) val[param] = pwd2sh1(val[param]);
+				}
+			}
+		}
 	}
 	return val;
 }

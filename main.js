@@ -1,20 +1,6 @@
 import Vue from "vue";
 import App from "App";
 
-String.prototype.trimAll = function (enter = true) {
-	var str = this;
-	str = str.replace(/\s/g, "");
-	if (enter) str = str.replace(/[\r\n]/g, "");
-	return str;
-};
-
-console.log = (function ($) {
-	return function () {
-		if (process.env.NODE_ENV === "development")
-			$.call(console, ...arguments);
-	};
-})(console.log);
-
 import store from "store";
 import toNav from "router";
 import * as tools from "common/tools";

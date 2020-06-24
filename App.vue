@@ -18,6 +18,7 @@
 </script>
 
 <style lang="scss">
+	@import "normalize.css";
 	@import "common/icon.css";
 
 	::-webkit-scrollbar {

@@ -2,7 +2,7 @@ import { toast } from "common/tools";
 
 const pages = {
 	home: "pages/home/home",
-}
+};
 
 function toNav(url, query = {}, type = "navigateTo", payload = {}) {
 	if (url.indexOf("/") === -1) {
@@ -19,7 +19,7 @@ function toNav(url, query = {}, type = "navigateTo", payload = {}) {
 	uni[type]({
 		url: `/${url}?query=${queryStr}`,
 		fail: () => toast("开发中..."),
-		...payload
+		...payload,
 	});
 }
 

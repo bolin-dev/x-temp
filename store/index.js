@@ -1,5 +1,5 @@
-import Vue from "vue"
-import Vuex from "vuex"
+import Vue from "vue";
+import Vuex from "vuex";
 
 import { getStorageSync } from "common/tools";
 import { fetch } from "services/request";
@@ -13,16 +13,16 @@ const store = new Vuex.Store({
 	modules: {},
 	state: {
 		isLogin: false,
-		member: ""
+		member: "",
 	},
 	mutations: {
 		upAuth(state, payload) {
-			state.isLogin = !payload.err
-			state.member = payload.err ? "" : payload.data.member
+			state.isLogin = !payload.err;
+			state.member = payload.err ? "" : payload.data.member;
 		},
 		upMember(state, payload) {
-			state.member = { ...state.member, ...payload }
-		}
+			state.member = { ...state.member, ...payload };
+		},
 	},
 	actions: {
 		async checkToken({ commit }) {
@@ -62,10 +62,10 @@ const store = new Vuex.Store({
 						uni.reLaunch({ url: loginUrl });
 						commit("upAuth", { err: true });
 					}
-				}
-			})
-		}
-	}
-})
+				},
+			});
+		},
+	},
+});
 
 export default store;

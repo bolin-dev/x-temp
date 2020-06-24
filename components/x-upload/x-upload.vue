@@ -2,8 +2,15 @@
 	<view class="x-upload" @click="chooseType">
 		<slot></slot>
 		<view class="thumb" v-if="!isSlot">
-			<image :src="thumb || '/static/upload.png'" mode="aspectFill"></image>
-			<view class="x-center mask" @click.stop v-if="status === 'uploading'">
+			<image
+				:src="thumb || '/static/upload.png'"
+				mode="aspectFill"
+			></image>
+			<view
+				class="x-center mask"
+				@click.stop
+				v-if="status === 'uploading'"
+			>
 				<text class="icon-redo spin"></text>
 			</view>
 		</view>
@@ -16,13 +23,13 @@
 		props: {
 			api: {
 				type: String,
-				default: ""
-			}
+				default: "",
+			},
 		},
 		data() {
 			return {
 				thumb: "",
-				status: "init"
+				status: "init",
 			};
 		},
 		methods: {
@@ -40,10 +47,14 @@
 				// #ifndef MP
 				hasUpload = this.$listeners["upload"];
 				// #endif
-				
+
 				if (hasUpload) return this.$emit("upload", url);
-				
-				let payload = { err: true, msg: "图片不存在或已删除！", data: "" };
+
+				let payload = {
+					err: true,
+					msg: "图片不存在或已删除！",
+					data: "",
+				};
 				if (url) {
 					this.status = "uploading";
 					const res = await this.$upload(url, this.api);
@@ -52,13 +63,13 @@
 					payload = res;
 				}
 				this.$emit("done", payload);
-			}
+			},
 		},
 		computed: {
 			isSlot() {
 				return this.$slots.default;
-			}
-		}
+			},
+		},
 	};
 </script>
 

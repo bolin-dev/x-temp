@@ -1,7 +1,19 @@
 <template>
 	<view v-if="showPopup" class="uni-popup" @touchmove.stop.prevent="clear">
-		<uni-transition :mode-class="['fade']" :styles="maskClass" :duration="duration" :show="showTrans" @click="onTap" />
-		<uni-transition :mode-class="ani" :styles="transClass" :duration="duration" :show="showTrans" @click="onTap">
+		<uni-transition
+			:mode-class="['fade']"
+			:styles="maskClass"
+			:duration="duration"
+			:show="showTrans"
+			@click="onTap"
+		/>
+		<uni-transition
+			:mode-class="ani"
+			:styles="transClass"
+			:duration="duration"
+			:show="showTrans"
+			@click="onTap"
+		>
 			<view class="uni-popup__wrapper-box" @click.stop="clear">
 				<slot />
 			</view>
@@ -10,7 +22,7 @@
 </template>
 
 <script>
-	import uniTransition from '../uni-transition/uni-transition.vue'
+	import uniTransition from "../uni-transition/uni-transition.vue";
 
 	/**
 	 * PopUp 弹出层
@@ -26,26 +38,26 @@
 	 */
 
 	export default {
-		name: 'UniPopup',
+		name: "UniPopup",
 		components: {
-			uniTransition
+			uniTransition,
 		},
 		props: {
 			// 开启动画
 			animation: {
 				type: Boolean,
-				default: true
+				default: true,
 			},
 			// 弹出层类型，可选值，top: 顶部弹出层；bottom：底部弹出层；center：全屏弹出层
 			type: {
 				type: String,
-				default: 'center'
+				default: "center",
 			},
 			// maskClick
 			maskClick: {
 				type: Boolean,
-				default: true
-			}
+				default: true,
+			},
 		},
 		data() {
 			return {
@@ -54,105 +66,105 @@
 				showPopup: false,
 				showTrans: false,
 				maskClass: {
-					'position': 'fixed',
-					'bottom': 0,
-					'top': 0,
-					'left': 0,
-					'right': 0,
-					'backgroundColor': 'rgba(0, 0, 0, 0.4)'
+					position: "fixed",
+					bottom: 0,
+					top: 0,
+					left: 0,
+					right: 0,
+					backgroundColor: "rgba(0, 0, 0, 0.4)",
 				},
 				transClass: {
-					'position': 'fixed',
-					'left': 0,
-					'right': 0,
-				}
-			}
+					position: "fixed",
+					left: 0,
+					right: 0,
+				},
+			};
 		},
 		watch: {
 			type: {
-				handler: function(newVal) {
+				handler: function (newVal) {
 					switch (this.type) {
-						case 'top':
-							this.ani = ['slide-top']
+						case "top":
+							this.ani = ["slide-top"];
 							this.transClass = {
-								'position': 'fixed',
-								'left': 0,
-								'right': 0,
-							}
-							break
-						case 'bottom':
-							this.ani = ['slide-bottom']
+								position: "fixed",
+								left: 0,
+								right: 0,
+							};
+							break;
+						case "bottom":
+							this.ani = ["slide-bottom"];
 							this.transClass = {
-								'position': 'fixed',
-								'left': 0,
-								'right': 0,
-								'bottom': 0
-							}
-							break
-						case 'center':
-							this.ani = ['zoom-out', 'fade']
+								position: "fixed",
+								left: 0,
+								right: 0,
+								bottom: 0,
+							};
+							break;
+						case "center":
+							this.ani = ["zoom-out", "fade"];
 							this.transClass = {
-								'position': 'fixed',
+								position: "fixed",
 								/* #ifndef APP-NVUE */
-								'display': 'flex',
-								'flexDirection': 'column',
+								display: "flex",
+								flexDirection: "column",
 								/* #endif */
-								'bottom': 0,
-								'left': 0,
-								'right': 0,
-								'top': 0,
-								'justifyContent': 'center',
-								'alignItems': 'center'
-							}
+								bottom: 0,
+								left: 0,
+								right: 0,
+								top: 0,
+								justifyContent: "center",
+								alignItems: "center",
+							};
 
-							break
+							break;
 					}
 				},
-				immediate: true
-			}
+				immediate: true,
+			},
 		},
 		created() {
 			if (this.animation) {
-				this.duration = 300
+				this.duration = 300;
 			} else {
-				this.duration = 0
+				this.duration = 0;
 			}
 		},
 		methods: {
 			clear(e) {
 				// TODO nvue 取消冒泡
-				e.stopPropagation()
+				e.stopPropagation();
 			},
 			open() {
-				this.showPopup = true
+				this.showPopup = true;
 				this.$nextTick(() => {
-					clearTimeout(this.timer)
+					clearTimeout(this.timer);
 					this.timer = setTimeout(() => {
-						this.showTrans = true
+						this.showTrans = true;
 					}, 50);
-				})
-				this.$emit('change', {
-					show: true
-				})
+				});
+				this.$emit("change", {
+					show: true,
+				});
 			},
 			close(type) {
-				this.showTrans = false
+				this.showTrans = false;
 				this.$nextTick(() => {
-					clearTimeout(this.timer)
+					clearTimeout(this.timer);
 					this.timer = setTimeout(() => {
-						this.$emit('change', {
-							show: false
-						})
-						this.showPopup = false
-					}, 300)
-				})
+						this.$emit("change", {
+							show: false,
+						});
+						this.showPopup = false;
+					}, 300);
+				});
 			},
 			onTap() {
-				if (!this.maskClick) return
-				this.close()
-			}
-		}
-	}
+				if (!this.maskClick) return;
+				this.close();
+			},
+		},
+	};
 </script>
 <style lang="scss" scoped>
 	.uni-popup {
@@ -246,7 +258,6 @@
 		transition-property: transform, opacity;
 		transition-duration: 0.2s;
 	}
-
 
 	.uni-top-content {
 		transform: translateY(0);

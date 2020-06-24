@@ -1,17 +1,18 @@
 import Vue from "vue";
 import App from "App";
 
-String.prototype.trimAll = function(enter = true) {
+String.prototype.trimAll = function (enter = true) {
 	var str = this;
 	str = str.replace(/\s/g, "");
 	if (enter) str = str.replace(/[\r\n]/g, "");
 	return str;
-}
+};
 
-console.log = (function($) {
-	return function() {
-		if (process.env.NODE_ENV === "development") $.call(console, ...arguments);
-	}
+console.log = (function ($) {
+	return function () {
+		if (process.env.NODE_ENV === "development")
+			$.call(console, ...arguments);
+	};
 })(console.log);
 
 import store from "store";
@@ -32,11 +33,11 @@ Vue.config.productionTip = false;
 Vue.mixin({
 	data() {
 		return {
-			_props: null
-		}
+			_props: null,
+		};
 	},
 	onLoad(option) {
-		const query = option.query || ""
+		const query = option.query || "";
 		if (query) {
 			try {
 				this._props = JSON.parse(decodeURIComponent(query));
@@ -44,7 +45,7 @@ Vue.mixin({
 				this._props = null;
 			}
 		}
-	}
+	},
 });
 
 App.mpType = "app";

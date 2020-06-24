@@ -1,10 +1,10 @@
 <template>
-	<view 
-		class="x-card" 
+	<view
+		class="x-card"
 		:style="{
 			backgroundColor: color,
 			borderRadius: radius,
-			padding: pad
+			padding: pad,
 		}"
 	>
 		<slot></slot>
@@ -17,23 +17,23 @@
 		props: {
 			color: {
 				type: String,
-				default: ""
+				default: "",
 			},
 			radius: {
 				type: [String, Number],
-				default: ""
+				default: "",
 			},
 			pad: {
 				type: String,
-				default: ""
-			}
-		}
-	}
+				default: "",
+			},
+		},
+	};
 </script>
 
 <style scoped lang="scss">
 	.x-card {
-		background-color: #FFFFFF;
+		background-color: #ffffff;
 		border-radius: $radius;
 		padding: 30rpx;
 	}

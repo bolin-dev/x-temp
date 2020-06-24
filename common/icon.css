@@ -30,12 +30,17 @@
 
 @font-face {
 	font-family: "icons";
-	src: url('https://at.alicdn.com/t/font_1418616_xuaokrejf1.eot');
-	src: url('https://at.alicdn.com/t/font_1418616_xuaokrejf1.eot?#iefix') format('embedded-opentype'),
-		url('https://at.alicdn.com/t/font_1418616_xuaokrejf1.woff2') format('woff2'),
-		url('https://at.alicdn.com/t/font_1418616_xuaokrejf1.woff') format('woff'),
-		url('https://at.alicdn.com/t/font_1418616_xuaokrejf1.ttf') format('truetype'),
-		url('https://at.alicdn.com/t/font_1418616_xuaokrejf1.svg#icons') format('svg');
+	src: url("https://at.alicdn.com/t/font_1418616_xuaokrejf1.eot");
+	src: url("https://at.alicdn.com/t/font_1418616_xuaokrejf1.eot?#iefix")
+			format("embedded-opentype"),
+		url("https://at.alicdn.com/t/font_1418616_xuaokrejf1.woff2")
+			format("woff2"),
+		url("https://at.alicdn.com/t/font_1418616_xuaokrejf1.woff")
+			format("woff"),
+		url("https://at.alicdn.com/t/font_1418616_xuaokrejf1.ttf")
+			format("truetype"),
+		url("https://at.alicdn.com/t/font_1418616_xuaokrejf1.svg#icons")
+			format("svg");
 }
 
 .icon-check-circle:before {

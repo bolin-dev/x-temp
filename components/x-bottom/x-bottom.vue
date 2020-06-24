@@ -1,7 +1,7 @@
 <template>
-	<view 
-		class="x-bottom" 
-		:class="{ 'x-safearea': safearea }" 
+	<view
+		class="x-bottom"
+		:class="{ 'x-safearea': safearea }"
 		:style="{ backgroundColor }"
 	>
 		<slot></slot>
@@ -14,13 +14,13 @@
 		props: {
 			safearea: {
 				type: Boolean,
-				default: true
+				default: true,
 			},
 			backgroundColor: {
 				type: String,
-				default: "#FFFFFF"
-			}
-		}
+				default: "#FFFFFF",
+			},
+		},
 	};
 </script>
 

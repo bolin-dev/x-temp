@@ -53,8 +53,8 @@
 | x-sub | 24rpx | #666666 | / |
 | x-info | 20rpx | #999999 | / |
 
-* **布局**  
-  
+* **布局**
+
 | class | style |
 | :--- | :--- |
 | .x-header | padding-top: var(--status-bar-height); |

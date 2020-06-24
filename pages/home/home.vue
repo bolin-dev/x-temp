@@ -8,9 +8,9 @@
 	export default {
 		methods: {
 			async fetch() {
-				const res = await this.$fetch('index');
-			}
-		}
+				const res = await this.$fetch("index");
+			},
+		},
 	};
 </script>
 

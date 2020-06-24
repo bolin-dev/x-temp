@@ -1,27 +1,26 @@
 <template>
-	<view 
-		class="x-row x-cell" 
-		:hover-class="isBind? 'x-cell-hover': ''"
+	<view
+		class="x-row x-cell"
+		:hover-class="isBind ? 'x-cell-hover' : ''"
 		@click="click"
 	>
 		<view class="thumb" v-if="thumb && thumb.length > 0">
-			<x-thumb 
-				:src="thumb" 
-				size="min" 
-				shape="square"
-			>
-			</x-thumb>
+			<x-thumb :src="thumb" size="min" shape="square"> </x-thumb>
 		</view>
-		<view 
-			class="x-flex x-row content" 
+		<view
+			class="x-flex x-row content"
 			:style="{
 				borderBottom: border ? '1rpx solid #e5e5ea' : 'none',
-				minHeight: `${minHeight}rpx`
+				minHeight: `${minHeight}rpx`,
 			}"
 		>
 			<view class="x-flex main">
 				<view class="x-one-line">{{ title }}</view>
-				<view class="x-one-line x-sub sub" v-if="sub && sub.length > 0">{{ sub }}</view>
+				<view
+					class="x-one-line x-sub sub"
+					v-if="sub && sub.length > 0"
+					>{{ sub }}</view
+				>
 			</view>
 			<view class="x-row extra" v-if="isExtra">
 				<slot></slot>
@@ -39,38 +38,38 @@
 		props: {
 			thumb: {
 				type: String,
-				default: ""
+				default: "",
 			},
 			title: {
 				type: String,
-				required: true
+				required: true,
 			},
 			sub: {
 				type: String,
-				default: ""
+				default: "",
 			},
 			extra: {
 				type: Boolean,
-				default: true
+				default: true,
 			},
 			border: {
 				type: Boolean,
-				default: true
+				default: true,
 			},
 			minHeight: {
 				type: Number,
-				default: 88
-			}
+				default: 88,
+			},
 		},
 		data() {
 			return {
-				isBind: false
-			}
+				isBind: false,
+			};
 		},
 		methods: {
 			click() {
 				this.$emit("click");
-			}
+			},
 		},
 		mounted() {
 			const t = this._events["click"];
@@ -81,8 +80,8 @@
 		computed: {
 			isExtra() {
 				return this.$slots.default || this.extra;
-			}
-		}
+			},
+		},
 	};
 </script>
 

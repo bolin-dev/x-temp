@@ -1,14 +1,17 @@
 <template>
 	<view class="x-row x-tabbar">
-		<view 
-			class="x-center tab" 
-			:class="{ active: current == index }" 
-			v-for="(item, index) in tab" 
-			:key="index" 
+		<view
+			class="x-center tab"
+			:class="{ active: current == index }"
+			v-for="(item, index) in tab"
+			:key="index"
 			@click="change(index)"
 		>
 			{{ item }}
-			<view class="dot" :style="{ backgroundColor: current == index ? color : '' }"></view>
+			<view
+				class="dot"
+				:style="{ backgroundColor: current == index ? color : '' }"
+			></view>
 		</view>
 	</view>
 </template>
@@ -19,24 +22,24 @@
 		props: {
 			tab: {
 				type: Array,
-				required: true
+				required: true,
 			},
 			current: {
 				type: [String, Number],
-				default: 0
+				default: 0,
 			},
 			color: {
 				type: String,
-				default: ""
-			}
+				default: "",
+			},
 		},
 		methods: {
 			change(current) {
 				if (this.current !== current) {
 					this.$emit("change", current);
 				}
-			}
-		}
+			},
+		},
 	};
 </script>
 

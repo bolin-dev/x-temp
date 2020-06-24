@@ -1,5 +1,5 @@
 const api = {
-	checkToken:"/api/access/login",
+	checkToken: "/api/access/login",
 	fetch: "/api/access/login",
 	home: {
 		home: "/api/access/index",
@@ -7,13 +7,13 @@ const api = {
 		notice: {
 			notice: "/api/home/notice",
 			detail: "/api/home/detail",
-			set: "/api/home/set"
-		}
+			set: "/api/home/set",
+		},
 	},
 	order: {
 		home: "/api/access/order",
-		notice: ""
-	}
-}
+		notice: "",
+	},
+};
 
 export default api;

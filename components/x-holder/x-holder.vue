@@ -6,24 +6,24 @@
 	const sizes = [
 		{
 			size: "min",
-			num: 44
+			num: 44,
 		},
 		{
 			size: "mid",
-			num: 88
+			num: 88,
 		},
 		{
 			size: "big",
-			num: 160
-		}
+			num: 160,
+		},
 	];
 	export default {
 		name: "x-holder",
 		props: {
 			size: {
 				type: [String, Number],
-				default: "mid"
-			}
+				default: "mid",
+			},
 		},
 		computed: {
 			calcSize() {
@@ -32,13 +32,13 @@
 				if (index !== -1) {
 					calcSize = sizes[index].num;
 				}
-				if (calcSize.search('x') === -1) {
+				if (calcSize.search("x") === -1) {
 					calcSize = `${calcSize}x${calcSize}`;
 				}
 				return calcSize;
-			}
-		}
-	}
+			},
+		},
+	};
 </script>
 
 <style></style>

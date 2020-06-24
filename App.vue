@@ -1,19 +1,19 @@
 <script>
 	export default {
-		onLaunch: function() {
+		onLaunch: function () {
 			this.startup();
 		},
 		methods: {
 			async startup() {
 				// #ifdef APP-PLUS
-				if (process.env.NODE_ENV === 'development') {
+				if (process.env.NODE_ENV === "development") {
 					uni.setKeepScreenOn({ keepScreenOn: true });
 				} else {
 					await this.$tools.updateWgt();
 				}
 				// #endif
-			}
-		}
+			},
+		},
 	};
 </script>
 
@@ -98,21 +98,21 @@
 		margin: 0;
 	}
 
-	button[type='primary'] {
+	button[type="primary"] {
 		background: $main-color;
 	}
 
-	.button-hover[type='primary'] {
+	.button-hover[type="primary"] {
 		background: $main-color;
 	}
 
-	button[type='default'] {
+	button[type="default"] {
 		background: none;
 		color: $main-color;
 		border: 2rpx solid $main-color;
 	}
 
-	.button-hover[type='default'] {
+	.button-hover[type="default"] {
 		background: none;
 		color: $main-color;
 	}

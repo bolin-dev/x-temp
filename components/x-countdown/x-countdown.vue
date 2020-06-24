@@ -11,16 +11,16 @@
 		props: {
 			title: {
 				type: String,
-				default: "获取验证码"
+				default: "获取验证码",
 			},
 			total: {
 				type: [Number, String],
-				default: 60
-			}
+				default: 60,
+			},
 		},
 		data() {
 			return {
-				second: 60
+				second: 60,
 			};
 		},
 		created() {
@@ -52,11 +52,11 @@
 					clearInterval(timer);
 					timer = null;
 				}
-			}
+			},
 		},
 		beforeDestroy() {
 			this.cancel();
-		}
+		},
 	};
 </script>
 

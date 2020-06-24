@@ -1,13 +1,15 @@
 <template>
-	<view 
-		class="x-row x-section" 
+	<view
+		class="x-row x-section"
 		:style="{
 			borderBottom: border ? '1rpx solid #e5e5ea' : 'none',
-			minHeight: `${minHeight}rpx`
+			minHeight: `${minHeight}rpx`,
 		}"
 	>
 		<view class="x-flex x-row box">
-			<view class="label" v-if="label && label.length > 0">{{ label }}</view>
+			<view class="label" v-if="label && label.length > 0">{{
+				label
+			}}</view>
 			<view class="x-flex content">
 				<slot></slot>
 			</view>
@@ -24,22 +26,22 @@
 		props: {
 			label: {
 				type: String,
-				default: ''
+				default: "",
 			},
 			border: {
 				type: Boolean,
-				default: true
+				default: true,
 			},
 			minHeight: {
 				type: Number,
-				default: 88
-			}
+				default: 88,
+			},
 		},
 		computed: {
 			isExtra() {
 				return this.$slots.extra;
-			}
-		}
+			},
+		},
 	};
 </script>
 

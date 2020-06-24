@@ -4,9 +4,11 @@ import { getStorageSync, toast, loading, hideLoading } from "common/tools";
 
 const isDev = process.env.NODE_ENV === "development";
 
-export const isUrl = (url) => {
-	return /^(https?:\/\/(([a-zA-Z0-9]+-?)+[a-zA-Z0-9]+\.)+[a-zA-Z]+)(:\d+)?(\/.*)?(\?.*)?(#.*)?$/.test(url);
-}
+export const isUrl = url => {
+	return /^(https?:\/\/(([a-zA-Z0-9]+-?)+[a-zA-Z0-9]+\.)+[a-zA-Z]+)(:\d+)?(\/.*)?(\?.*)?(#.*)?$/.test(
+		url
+	);
+};
 
 const interceptor = (url, route = "") => {
 	let options = false;
@@ -44,14 +46,14 @@ const interceptor = (url, route = "") => {
 		options = {
 			url,
 			header: { Authorization: `bearer ${getStorageSync("token")}` },
-			_params
+			_params,
 		};
 	} else {
 		if (isDev) toast("接口错误或未定义！", "fail");
 	}
 
 	return options;
-}
+};
 
 const success = (statusCode, data, params = []) => {
 	let res = { err: true, msg: "网络错误请稍后重试！", data: "" };
@@ -64,7 +66,10 @@ const success = (statusCode, data, params = []) => {
 				if (isDev) toast(e);
 			}
 		}
-		res = typeof data !== "string" ? data : { err: false, msg: "success", data };
+		res =
+			typeof data !== "string"
+				? data
+				: { err: false, msg: "success", data };
 	}
 
 	if (res.err) {
@@ -81,17 +86,17 @@ const success = (statusCode, data, params = []) => {
 		}
 	}
 	return res;
-}
+};
 
-const fail = (errMsg) => {
+const fail = errMsg => {
 	const res = { err: true, msg: errMsg, data: "" };
 	toast(res);
 	return res;
-}
+};
 
 const complete = () => {
 	hideLoading();
-}
+};
 
 export function fetch(url, data = {}, payload = {}) {
 	let route = "";
@@ -102,15 +107,16 @@ export function fetch(url, data = {}, payload = {}) {
 	}
 	const options = interceptor(url, route);
 	if (options) {
-		return new Promise((resolve) => {
+		return new Promise(resolve => {
 			uni.request({
 				data,
 				method: "POST",
-				success: ({ statusCode, data }) => resolve(success(statusCode, data, options._params)),
+				success: ({ statusCode, data }) =>
+					resolve(success(statusCode, data, options._params)),
 				fail: ({ errMsg }) => resolve(fail(errMsg)),
 				complete,
 				...options,
-				...payload
+				...payload,
 			});
 		});
 	}
@@ -118,7 +124,11 @@ export function fetch(url, data = {}, payload = {}) {
 
 export function submit(url, formData = null, name = "files") {
 	if (!name) name = "files";
-	if (formData && name in formData && Object.keys(formData[name]).length > 0) {
+	if (
+		formData &&
+		name in formData &&
+		Object.keys(formData[name]).length > 0
+	) {
 		let route = "";
 		try {
 			route = this.$mp.page.route;
@@ -133,22 +143,23 @@ export function submit(url, formData = null, name = "files") {
 				files.push({ name: key, uri: formDataFiles[key] });
 			}
 			delete formData[name];
-			return new Promise((resolve) => {
+			return new Promise(resolve => {
 				uni.uploadFile({
 					fileType: "image",
 					filePath: "",
 					name: "",
 					files,
 					formData,
-					success: ({ statusCode, data }) => resolve(success(statusCode, data, options._params)),
+					success: ({ statusCode, data }) =>
+						resolve(success(statusCode, data, options._params)),
 					fail: ({ errMsg }) => resolve(fail(errMsg)),
 					complete,
-					...options
+					...options,
 				});
 			});
 		}
 	} else {
-		return (fetch(url, formData));
+		return fetch(url, formData);
 	}
 }
 
@@ -163,15 +174,16 @@ export function upload(filePath, url = config.upload_url, name = "file") {
 	}
 	const options = interceptor(url, route);
 	if (options) {
-		return new Promise((resolve) => {
+		return new Promise(resolve => {
 			uni.uploadFile({
 				fileType: "image",
 				filePath,
 				name,
-				success: ({ statusCode, data }) => resolve(success(statusCode, data, options._params)),
+				success: ({ statusCode, data }) =>
+					resolve(success(statusCode, data, options._params)),
 				fail: ({ errMsg }) => resolve(fail(errMsg)),
 				complete,
-				...options
+				...options,
 			});
 		});
 	}
@@ -186,12 +198,13 @@ export function download(url) {
 	}
 	const options = interceptor(url, route);
 	if (options) {
-		return new Promise((resolve) => {
+		return new Promise(resolve => {
 			uni.downloadFile({
-				success: ({ statusCode, tempFilePath }) => resolve(success(statusCode, tempFilePath, options._params)),
+				success: ({ statusCode, tempFilePath }) =>
+					resolve(success(statusCode, tempFilePath, options._params)),
 				fail: ({ errMsg }) => resolve(fail(errMsg)),
 				complete,
-				...options
+				...options,
 			});
 		});
 	}

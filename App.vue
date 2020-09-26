@@ -1,24 +1,23 @@
 <script>
 	export default {
 		onLaunch: function () {
-			this.startup();
+			// this.startup();
 		},
 		methods: {
-			async startup() {
-				// #ifdef APP-PLUS
-				if (process.env.NODE_ENV === "development") {
-					uni.setKeepScreenOn({ keepScreenOn: true });
-				} else {
-					await this.$tools.updateWgt();
-				}
-				// #endif
-			},
+			// async startup() {
+			// 	// #ifdef APP-PLUS
+			// 	if (process.env.NODE_ENV === "development") {
+			// 		uni.setKeepScreenOn({ keepScreenOn: true });
+			// 	} else {
+			// 		await this.$tools.updateWgt();
+			// 	}
+			// 	// #endif
+			// },
 		},
 	};
 </script>
 
 <style lang="scss">
-	@import "normalize.css";
 	@import "common/icon.css";
 
 	::-webkit-scrollbar {
@@ -31,7 +30,8 @@
 
 	page {
 		background-color: $bgc;
-		@extend %x-body;
+		font-size: $body-size;
+		color: $body-color;
 	}
 
 	view {
@@ -82,7 +82,9 @@
 	}
 
 	button {
-		@extend %x-center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		border: none;
 		outline: none;
 		box-shadow: none;
@@ -90,6 +92,7 @@
 		font-size: $body-size;
 		height: 88rpx;
 		border-radius: 44rpx;
+		min-width: 180rpx;
 	}
 
 	button:after {
@@ -110,7 +113,8 @@
 	button[type="default"] {
 		background: none;
 		color: $main-color;
-		border: 2rpx solid $main-color;
+		font-weight: bold;
+		border: 4rpx solid $main-color;
 	}
 
 	.button-hover[type="default"] {
@@ -136,77 +140,108 @@
 		bottom: var(--window-bottom);
 	}
 
-	.x-num {
-		@extend %x-num;
-	}
+	[class^="x-"] {
+		&[class$="-hover"] {
+			background-color: rgba($color: $hover-bgc, $alpha: 0.75);
+		}
 
-	.x-l-title {
-		@extend %x-l-title;
-	}
+		&[class*="-del"] {
+			text-decoration: line-through;
+		}
 
-	.x-title {
-		@extend %x-title;
-	}
+		&[class^="x-num"] {
+			font-size: $number-size;
+		}
+		&[class$="-num"] {
+			color: $number-color;
+		}
 
-	.x-sub {
-		@extend %x-sub;
-	}
+		&[class^="x-l-title"] {
+			font-size: $l-title-size;
+		}
+		&[class$="-l-title"] {
+			color: $l-title-color;
+		}
 
-	.x-info {
-		@extend %x-info;
-	}
+		&[class^="x-title"] {
+			font-size: $title-size;
+		}
+		&[class$="-title"] {
+			color: $title-color;
+		}
 
-	.x-center {
-		@extend %x-center;
-		flex-direction: row;
-	}
+		&[class^="x-sub"] {
+			font-size: $sub-size;
+		}
+		&[class$="-sub"] {
+			color: $sub-color;
+		}
 
-	.x-center-col {
-		@extend %x-center;
-		flex-direction: column;
-	}
+		&[class^="x-info"] {
+			font-size: $info-size;
+		}
+		&[class$="-info"] {
+			color: $info-color;
+		}
 
-	.x-row {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-	}
+		&[class$="-blue"] {
+			color: $blue;
+		}
+		&[class$="-green"] {
+			color: $green;
+		}
+		&[class$="-indigo"] {
+			color: $indigo;
+		}
+		&[class$="-orange"] {
+			color: $orange;
+		}
+		&[class$="-pink"] {
+			color: $pink;
+		}
+		&[class$="-purple"] {
+			color: $purple;
+		}
+		&[class$="-red"] {
+			color: $red;
+		}
+		&[class$="-teal"] {
+			color: $teal;
+		}
+		&[class$="-yellow"] {
+			color: $yellow;
+		}
+		&[class$="-main"] {
+			color: $main-color;
+		}
 
-	.x-col {
-		display: flex;
-		flex-direction: column;
-	}
-
-	.x-flex {
-		flex: 1;
-		overflow: hidden;
+		&[class^="x-row"] {
+			display: flex;
+			align-items: center;
+			* {
+				flex-shrink: 0;
+			}
+		}
+		&[class^="x-col"] {
+			display: flex;
+			flex-direction: column;
+			* {
+				flex-shrink: 0;
+			}
+		}
+		&[class*="-flex"] {
+			flex: 1;
+			overflow: hidden;
+		}
+		&[class$="-center"] {
+			justify-content: center;
+			align-items: center;
+		}
 	}
 
 	.x-one-line {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
-	}
-
-	.x-del {
-		text-decoration: line-through;
-	}
-
-	.x-link {
-		color: $main-color;
-	}
-
-	.x-desc {
-		color: $info-color;
-	}
-
-	.x-btn-area {
-		padding: 60rpx 30rpx;
-	}
-
-	.x-square {
-		padding-bottom: 100%;
-		height: 0;
-		word-wrap: break-word;
 	}
 </style>

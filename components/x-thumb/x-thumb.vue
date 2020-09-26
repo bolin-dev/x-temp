@@ -8,11 +8,7 @@
 			borderRadius: calcRadius,
 		}"
 	>
-		<image
-			:src="`${src || `https://img.la/${size}x${size}`}`"
-			mode="aspectFill"
-			lazy-load
-		></image>
+		<image :src="`${src || `https://img.la/${size}x${size}`}`" mode="aspectFill" lazy-load></image>
 	</view>
 </template>
 

@@ -1,9 +1,5 @@
 <template>
-	<view
-		class="x-bottom"
-		:class="{ 'x-safearea': safearea }"
-		:style="{ backgroundColor }"
-	>
+	<view class="x-bottom" :class="{ 'x-safearea': safearea }" :style="{ backgroundColor }">
 		<slot></slot>
 	</view>
 </template>

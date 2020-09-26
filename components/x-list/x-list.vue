@@ -1,24 +1,12 @@
 <template>
 	<view class="x-list">
 		<view class="x-row row head">
-			<view
-				class="x-flex x-one-line col"
-				v-for="(item, index) in columns"
-				:key="index"
-			>
+			<view class="x-flex x-one-line col" v-for="(item, index) in columns" :key="index">
 				{{ item.title || "" }}
 			</view>
 		</view>
-		<view
-			class="x-row row"
-			v-for="(row, rowIndex) in dataSource"
-			:key="rowIndex"
-		>
-			<view
-				class="x-flex x-one-line col"
-				v-for="(col, colIndex) in columns"
-				:key="colIndex"
-			>
+		<view class="x-row row" v-for="(row, rowIndex) in dataSource" :key="rowIndex">
+			<view class="x-flex x-one-line col" v-for="(col, colIndex) in columns" :key="colIndex">
 				{{ row[col.key] }}
 			</view>
 		</view>

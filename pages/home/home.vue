@@ -1,6 +1,9 @@
 <template>
 	<view class="home">
-		<button type="primary" @click="fetch">fetch</button>
+		<button type="default" @click="fetch">fetch</button>
+		<view class="x-num-red">
+			测试标题
+		</view>
 	</view>
 </template>
 

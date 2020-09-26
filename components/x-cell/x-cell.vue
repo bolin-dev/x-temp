@@ -1,9 +1,5 @@
 <template>
-	<view
-		class="x-row x-cell"
-		:hover-class="isBind ? 'x-cell-hover' : ''"
-		@click="click"
-	>
+	<view class="x-row x-cell" :hover-class="isBind ? 'x-cell-hover' : ''" @click="click">
 		<view class="thumb" v-if="thumb && thumb.length > 0">
 			<x-thumb :src="thumb" size="min" shape="square"> </x-thumb>
 		</view>
@@ -16,11 +12,7 @@
 		>
 			<view class="x-flex main">
 				<view class="x-one-line">{{ title }}</view>
-				<view
-					class="x-one-line x-sub sub"
-					v-if="sub && sub.length > 0"
-					>{{ sub }}</view
-				>
+				<view class="x-one-line x-sub sub" v-if="sub && sub.length > 0">{{ sub }}</view>
 			</view>
 			<view class="x-row extra" v-if="isExtra">
 				<slot></slot>

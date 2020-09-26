@@ -39,7 +39,7 @@ $border: 1rpx solid $gray-5;
 $line-color: $gray-5;
 $navbar-hei: 44px;
 $tabbar-hei: 50px;
-$radius: 4px;
+$radius: 8rpx;
 $main-color: #33c7d4;
 $second-color: #07848f;
 $linear: linear-gradient(to right, $second-color, $main-color);
@@ -52,44 +52,4 @@ $linear: linear-gradient(to right, $second-color, $main-color);
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: $lines;
-}
-
-%x-center {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-%x-num {
-	font-size: $number-size;
-	color: $number-color;
-}
-
-%x-l-title {
-	font-size: $l-title-size;
-	color: $l-title-color;
-}
-
-%x-title {
-	font-size: $title-size;
-	color: $title-color;
-}
-
-%x-body {
-	font-size: $body-size;
-	color: $body-color;
-}
-
-%x-sub {
-	font-size: $sub-size;
-	color: $sub-color;
-}
-
-%x-info {
-	font-size: $info-size;
-	color: $info-color;
-}
-
-%x-hover {
-	background-color: rgba($color: $hover-bgc, $alpha: 0.75);
 }

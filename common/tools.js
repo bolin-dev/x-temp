@@ -1,6 +1,27 @@
 import config from "config";
 import { isUrl, fetch, download } from "services/request";
-import sha1 from "sha1";
+
+// 防抖
+export function debounce(func, ms = 1000) {
+	let timer;
+	return function (...args) {
+		if (timer) clearTimeout(timer);
+		timer = setTimeout(() => func.apply(this, args), ms);
+	};
+}
+
+// 节流
+export function throttle(func, ms = 1000) {
+	let canRun = true;
+	return function (...args) {
+		if (!canRun) return 0;
+		canRun = false;
+		setTimeout(() => {
+			func.apply(this, args);
+			canRun = true;
+		}, ms);
+	};
+}
 
 // 富文本图片样式
 export const richTextReplace = (text = "") => {
@@ -9,24 +30,6 @@ export const richTextReplace = (text = "") => {
 		text = text.replace(regex, `<img style="max-width: 100%;"`);
 	}
 	return text;
-};
-
-// sha1加密
-export const pwd2sh1 = (val = "", params = "password") => {
-	if (val) {
-		if (typeof val === "string") {
-			val = val.trim();
-			if (val) val = sha1(val);
-		} else {
-			if (typeof params === "string") params = [params];
-			if (params.length) {
-				for (let param of params) {
-					if (param in val) val[param] = pwd2sh1(val[param]);
-				}
-			}
-		}
-	}
-	return val;
 };
 
 // 获取缓存数据
@@ -77,7 +80,7 @@ export const toast = (title = "", icon = "none", payload = {}) => {
 	if (typeof title !== "string") {
 		if ("err" in title && "msg" in title) {
 			icon = title.err ? "fail" : "success";
-			title = title.msg;
+			title = title.msg || "";
 		} else {
 			title = "";
 		}
@@ -96,14 +99,11 @@ export const toast = (title = "", icon = "none", payload = {}) => {
 };
 
 // loading提示
-let delay = null;
-let timer = null;
+let delay;
+let timer;
 export const loading = (title = "", mask = true) => {
 	hideLoading();
-	delay = setTimeout(
-		() => uni.showLoading({ title, mask, success: startLoading }),
-		300
-	);
+	delay = setTimeout(() => uni.showLoading({ title, mask, success: startLoading }), 300);
 };
 const startLoading = () => {
 	timer = setTimeout(hideLoading, 30000);
@@ -121,23 +121,10 @@ export const hideLoading = () => {
 };
 
 // 对话框(APP-PLUS)
-export const prompt = ({
-	title = "",
-	message,
-	placeholder = "",
-	buttons = ["取消", "确定"],
-}) =>
+export const prompt = ({ title = "", message, placeholder = "", buttons = ["取消", "确定"] }) =>
 	new Promise(resolve => {
-		// #ifdef APP-PLUS
 		if (!buttons || !buttons.length) buttons = ["取消", "确定"];
-		plus.nativeUI.prompt(
-			message,
-			e => resolve(e),
-			title,
-			placeholder,
-			buttons
-		);
-		// #endif
+		plus.nativeUI.prompt(message, e => resolve(e), title, placeholder, buttons);
 	});
 
 // 登录
@@ -182,8 +169,7 @@ export const saveImageToPhotosAlbum = filePath =>
 		if (filePath) {
 			uni.saveImageToPhotosAlbum({
 				filePath,
-				success: () =>
-					resolve({ err: false, msg: "保存成功~", data: "" }),
+				success: () => resolve({ err: false, msg: "保存成功~", data: "" }),
 				fail: () => resolve({ err: true, msg: "保存失败！", data: "" }),
 			});
 		}

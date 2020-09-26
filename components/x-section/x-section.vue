@@ -7,9 +7,7 @@
 		}"
 	>
 		<view class="x-flex x-row box">
-			<view class="label" v-if="label && label.length > 0">{{
-				label
-			}}</view>
+			<view class="label" v-if="label && label.length > 0">{{ label }}</view>
 			<view class="x-flex content">
 				<slot></slot>
 			</view>

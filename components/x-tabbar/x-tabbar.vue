@@ -8,10 +8,7 @@
 			@click="change(index)"
 		>
 			{{ item }}
-			<view
-				class="dot"
-				:style="{ backgroundColor: current == index ? color : '' }"
-			></view>
+			<view class="dot" :style="{ backgroundColor: current == index ? color : '' }"></view>
 		</view>
 	</view>
 </template>

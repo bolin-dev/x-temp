@@ -3,6 +3,8 @@
 		"navigationBarBackgroundColor": "#FFFFFF",
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "x-temp",
+		"backgroundColor": "#F8F8F8",
+		"backgroundTextStyle": "dark",
 		"backgroundColorTop": "#F8F8F8",
 		"backgroundColorBottom": "#F8F8F8",
 		"pageOrientation": "portrait",

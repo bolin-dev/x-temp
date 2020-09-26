@@ -2,15 +2,8 @@
 	<view class="x-upload" @click="chooseType">
 		<slot></slot>
 		<view class="thumb" v-if="!isSlot">
-			<image
-				:src="thumb || '/static/upload.png'"
-				mode="aspectFill"
-			></image>
-			<view
-				class="x-center mask"
-				@click.stop
-				v-if="status === 'uploading'"
-			>
+			<image :src="thumb || '/static/upload.png'" mode="aspectFill"></image>
+			<view class="x-center mask" @click.stop v-if="status === 'uploading'">
 				<text class="icon-redo spin"></text>
 			</view>
 		</view>

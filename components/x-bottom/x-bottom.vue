@@ -12,7 +12,7 @@
 				type: Boolean,
 				default: true,
 			},
-			backgroundColor: {
+			bgc: {
 				type: String,
 				default: "#FFFFFF",
 			},

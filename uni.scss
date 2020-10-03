@@ -32,16 +32,16 @@ $info-size: 20rpx;
 $info-color: #999999;
 
 // base style
-$bgc: #f8f8f8;
+$bgc: #e2e3e8;
 $hover-bgc: $gray-6;
-$shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+$shadow: 0 4rpx 8rpx 0 rgba(184, 184, 184, 0.49);
 $border: 1rpx solid $gray-5;
 $line-color: $gray-5;
 $navbar-hei: 44px;
 $tabbar-hei: 50px;
-$radius: 8rpx;
-$main-color: #33c7d4;
-$second-color: #07848f;
+$radius: 4px;
+$main-color: #215ca5;
+$second-color: #215ca5;
 $linear: linear-gradient(to right, $second-color, $main-color);
 
 // @include x-ellipsis(lines)
@@ -52,4 +52,44 @@ $linear: linear-gradient(to right, $second-color, $main-color);
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: $lines;
+}
+
+%x-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+%x-num {
+	font-size: $number-size;
+	color: $number-color;
+}
+
+%x-l-title {
+	font-size: $l-title-size;
+	color: $l-title-color;
+}
+
+%x-title {
+	font-size: $title-size;
+	color: $title-color;
+}
+
+%x-body {
+	font-size: $body-size;
+	color: $body-color;
+}
+
+%x-sub {
+	font-size: $sub-size;
+	color: $sub-color;
+}
+
+%x-info {
+	font-size: $info-size;
+	color: $info-color;
+}
+
+%x-hover {
+	background-color: rgba($color: $hover-bgc, $alpha: 0.75) !important;
 }

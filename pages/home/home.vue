@@ -1,9 +1,7 @@
 <template>
 	<view class="home">
 		<button type="default" @click="fetch">fetch</button>
-		<view class="x-num-red">
-			测试标题
-		</view>
+		<x-cell title="title" sub="sub">321</x-cell>
 	</view>
 </template>
 
@@ -19,6 +17,6 @@
 
 <style scoped lang="scss">
 	.home {
-		padding: 30rpx;
+		// padding: 30rpx;
 	}
 </style>
